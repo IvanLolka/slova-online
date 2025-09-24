@@ -1,0 +1,65 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5;
+  color: #333;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+h1 {
+  color: #4a6cf7;
+}
+.menu {
+  margin-top: 40px;
+}
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #3a5ce5;
+}
+.join-form {
+  margin-top: 20px;
+}
+.join-form input {
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
+  margin-right: 10px;
+}
+.word-history {
+  margin: 20px 0;
+  text-align: left;
+}
+.word-history ul {
+  list-style: none;
+  padding: 0;
+}
+.word-history li {
+  padding: 5px;
+  background: #eef2ff;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+.input-area {
+  margin-top: 20px;
+}
+.input-area input {
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
+}
+#send-word {
+  margin-left: 10px;
+}

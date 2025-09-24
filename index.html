@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Игра "Слова"</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Игра "Слова"</h1>
+    <div class="menu">
+      <button id="create-room">Создать комнату</button>
+      <div id="room-actions" style="display:none;">
+        <button id="copy-id-btn">Скопировать ID комнаты</button>
+        <button id="start-game-btn">Начать игру</button>
+      </div>
+
+      <div class="join-form">
+        <input type="text" id="room-id" placeholder="Введите ID комнаты">
+        <button id="join-room">Войти в комнату</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

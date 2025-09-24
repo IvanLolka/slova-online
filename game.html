@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Игра "Слова"</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Игра "Слова"</h1>
+    <div class="game-info">
+      <p id="turn">Ваш ход</p>
+      <p id="status">Ожидание соперника...</p>
+    </div>
+    <div class="word-history">
+      <ul id="history"></ul>
+    </div>
+    <div class="input-area">
+      <input type="text" id="word-input" placeholder="Введите слово" autocomplete="off" disabled>
+      <button id="send-word" disabled>Отправить</button>
+    </div>
+  </div>
+  <script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+  <script src="js/game-logic.js"></script>
+  <script src="js/webrtc.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
