@@ -1,5 +1,4 @@
-let peer;
-let conn;
+// в начале файла уже должно быть: let peer; let conn;
 
 function initPeer(id) {
   peer = new Peer(id, {
@@ -11,43 +10,57 @@ function initPeer(id) {
   });
 
   peer.on('open', () => {
-    console.log('Мой ID:', peer.id);
+    console.log('Мой ID (peer.open):', peer.id);
   });
 
   peer.on('connection', (connection) => {
+    console.log('Получено входящее соединение от', connection.peer);
     conn = connection;
     setupConnection(conn);
+  });
+
+  peer.on('error', (err) => {
+    console.error('PeerJS error:', err);
+  });
+
+  peer.on('disconnected', () => {
+    console.warn('Peer disconnected');
   });
 }
 
 function connectToPeer(id) {
   console.log('Подключаюсь к:', id);
-  conn = peer.connect(id);
-  setupConnection(conn);
+  try {
+    conn = peer.connect(id, { reliable: true });
+    setupConnection(conn);
+  } catch (e) {
+    console.error('Ошибка при connect:', e);
+  }
 }
 
 function setupConnection(connection) {
   connection.on('open', () => {
-    console.log('Соединение установлено!');
+    console.log('Соединение установлено с', connection.peer);
     const statusElement = document.getElementById('status');
     if (statusElement) statusElement.textContent = 'Соединение установлено';
-    document.getElementById('word-input').disabled = false;
-    document.getElementById('send-word').disabled = false;
+    const input = document.getElementById('word-input');
+    const send = document.getElementById('send-word');
+    if (input) input.disabled = false;
+    if (send) send.disabled = false;
   });
 
   connection.on('data', (data) => {
+    console.log('Пришли данные:', data);
     handleIncomingData(data);
   });
-}
 
-function sendWord(word) {
-  if (conn) {
-    conn.send({ type: 'word', word });
-  }
-}
+  connection.on('close', () => {
+    console.log('Соединение закрыто');
+    const statusElement = document.getElementById('status');
+    if (statusElement) statusElement.textContent = 'Соединение закрыто';
+  });
 
-function sendGameOver() {
-  if (conn) {
-    conn.send({ type: 'gameOver' });
-  }
+  connection.on('error', (err) => {
+    console.error('Connection error:', err);
+  });
 }
