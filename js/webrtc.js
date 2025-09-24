@@ -11,7 +11,7 @@ function initPeer(id) {
   });
 
   peer.on('open', () => {
-    console.log('ID подключения:', peer.id);
+    console.log('Мой ID:', peer.id);
   });
 
   peer.on('connection', (connection) => {
@@ -21,12 +21,14 @@ function initPeer(id) {
 }
 
 function connectToPeer(id) {
+  console.log('Подключаюсь к:', id);
   conn = peer.connect(id);
   setupConnection(conn);
 }
 
 function setupConnection(connection) {
   connection.on('open', () => {
+    console.log('Соединение установлено!');
     const statusElement = document.getElementById('status');
     if (statusElement) statusElement.textContent = 'Соединение установлено';
     document.getElementById('word-input').disabled = false;
